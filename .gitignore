@@ -1,0 +1,49 @@
+# === Secrets (NEVER commit) — see docs/SECURITY.md ===
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+*.keystore
+secrets.*
+**/secrets/**
+*.credentials
+credentials.json
+.aws/
+.ssh/
+service-account*.json
+gcp-*.json
+
+# === Build / dependency artifacts ===
+node_modules/
+dist/
+build/
+out/
+target/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# === Local / ephemeral ===
+*.log
+.DS_Store
+Thumbs.db
+.cache/
+coverage/
+.claude/settings.local.json
+
+# === Copyrighted source material (kept locally, not redistributed) ===
+# The motivating papers/playbook live here for local reference but must not be committed
+# to a public repository. See docs/references/index.md for what they are.
+Reference/
+
+# === Harness ephemeral observability & episode runtime data ===
+# (per-worktree logs/metrics are torn down after each run; templates are kept)
+harness/eval/episodes/*/traces/
+!harness/eval/episodes/.gitkeep
+.harness-runtime/

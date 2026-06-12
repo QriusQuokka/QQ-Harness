@@ -1,0 +1,15 @@
+{
+  "episode_id": "example-T1",
+  "harness_level": "H3",
+  "task": "empty-password validation rejection",
+  "label": "autonomous_verified_success",
+  "metrics": {
+    "requirements_total": 5,
+    "requirements_verified": 5,
+    "deterministic_checks_passed": 3,
+    "deterministic_checks_total": 3,
+    "missing_harness_interventions": 0,
+    "full_regression": "bounded_timeout_recorded",
+    "entropy_delta": 0
+  }
+}
