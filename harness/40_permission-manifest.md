@@ -33,7 +33,10 @@ macOS, and Linux without any extra install.
 - Dependency changes: `npm/pnpm/yarn install|add`, `pip install`, `uv add`, `cargo add`,
   `go get`, `Install-Module`, `Install-Package` (supply-chain review).
 - External transmission: `git push`, `WebFetch`, `WebSearch`, `curl`, `wget`, and PowerShell
-  `Invoke-WebRequest`/`Invoke-RestMethod`/`iwr`.
+  `Invoke-WebRequest`/`Invoke-RestMethod`/`iwr`. (`git push` is also defended at *setup* time:
+  `scripts/init-template.mjs` removes the template's `origin` remote from a fresh clone, so an
+  approved-but-misdirected push can't land back in the template repo — runtime gate + setup
+  removal are complementary.)
 
 ## Two-layer division of labor (`.env*`)
 `settings.json` `deny` enumerates the common secret-bearing variants recursively

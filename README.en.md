@@ -113,8 +113,9 @@ You need **[Claude Code](https://claude.com/claude-code)** installed. It already
    > "Set up this project for me"
 
    Claude will run `node scripts/init-template.mjs`, which cleans out the built-in example,
-   starts fresh version control (a first save point), and prints a short to-do list (filling
-   your name into `LICENSE`, etc.).
+   starts fresh version control (a first save point), detaches the template's `origin` remote
+   if you cloned (so you can't accidentally push back to the template), and prints a short
+   to-do list (filling your name into `LICENSE`, etc.).
    To run it yourself instead: `node scripts/init-template.mjs`
    *Skip this step if you only want to explore the harness with its example in place.*
 
@@ -127,10 +128,12 @@ You need **[Claude Code](https://claude.com/claude-code)** installed. It already
 > **Starting a brand-new project without forking?** The cleanest paths are the **ZIP download**
 > above or GitHub's **“Use this template”** button — both give you a clean copy with no template
 > history. A **`git clone`**, by contrast, brings the template's full commit history *and* an
-> `origin` remote still pointing at the template repo (an accidental push would go there). If you
-> started with a clone, remove or repoint `origin` to make the project yours — step 3's
-> `init-template` detects this and reminds you. Prefer to build *on top of* this harness and send
-> improvements back? **Fork** it instead.
+> `origin` remote still pointing at the template repo (an accidental push would go there).
+> Step 3's `init-template` detects this and **automatically removes the template `origin`**, so an
+> accidental push has nowhere to go and fails harmlessly. When your own repo is ready, connect it
+> with `git remote add origin <your-repo-url>`. (Forks and "Use this template" copies already point
+> `origin` at your own repo, so they're left untouched.) Prefer to build *on top of* this harness
+> and send improvements back? **Fork** it instead.
 
 ### Check that the guardrails are live
 Ask Claude Code to read a secret file, e.g. *"show me the contents of `.env`"*. It should be

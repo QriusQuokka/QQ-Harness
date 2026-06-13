@@ -24,6 +24,21 @@ const root = path.dirname(here);            // repo root (scripts/ is one level 
 const done = [];
 const todo = [];
 
+// The canonical template repository. If a fresh clone's "origin" still points here, init
+// removes it (see step 4) so a new project can't accidentally push back into the template.
+// Forking this harness under your own name? Change this slug to your template's "owner/repo".
+const TEMPLATE_REMOTE_SLUG = 'qriusquokka/qq-harness';
+
+// True when a git remote URL points at the template repo above — matches both
+// https://github.com/Owner/Repo(.git) and git@github.com:Owner/Repo(.git), case-insensitively
+// and ignoring a trailing ".git". A user's own fork / "Use this template" copy points elsewhere
+// and returns false, so it is left untouched.
+function isTemplateRemote(url) {
+  const normalized = url.trim().toLowerCase().replace(/\.git$/, '');
+  return normalized.endsWith('/' + TEMPLATE_REMOTE_SLUG)
+      || normalized.endsWith(':' + TEMPLATE_REMOTE_SLUG);
+}
+
 // 1) Remove the illustrative example episode
 const example = path.join(root, 'harness', 'eval', 'episodes', 'example-T1');
 if (fs.existsSync(example)) {
@@ -67,17 +82,34 @@ if (!gitAvailable) {
   try { run(['rev-parse', '--is-inside-work-tree']); alreadyRepo = true; } catch { alreadyRepo = false; }
   if (alreadyRepo) {
     done.push('Git repository already present — history left untouched');
-    // A `git clone` of the template carries an origin remote pointing back at the template.
+    // A `git clone` of the template carries an "origin" remote pointing back at the template
+    // repo. Left in place, a `git push` — especially an accidental one by a non-developer —
+    // would target the TEMPLATE, not this new project. (A stranger without write access is
+    // rejected by the host, but the template owner cloning their own template *would* push
+    // straight back into it.) So if origin still points at the template, remove it here,
+    // turning that footgun into a harmless "no remote configured". Forks / "Use this template"
+    // copies point origin at the user's own repo and are left untouched.
     let origin = '';
     try {
       origin = String(execFileSync('git', ['remote', 'get-url', 'origin'], { cwd: root })).trim();
     } catch { /* no origin configured */ }
-    if (origin) {
-      todo.push(
-        `This repo's "origin" points at ${origin} (likely the template, not yours).\n` +
-        '      To make it your own, remove or repoint it:\n' +
-        '      git remote remove origin   # then: git remote add origin <your-repo-url>'
-      );
+    if (origin && isTemplateRemote(origin)) {
+      try {
+        run(['remote', 'remove', 'origin']);
+        done.push(
+          `Removed the template "origin" remote (was ${origin}) so a push can't reach the template.\n` +
+          '      Nothing is wired up to push to yet — when your own repo is ready:\n' +
+          '      git remote add origin <your-repo-url>'
+        );
+      } catch {
+        todo.push(
+          `Could not auto-remove the template "origin" remote (${origin}). Remove it by hand so an\n` +
+          '      accidental push does not target the template:\n' +
+          '      git remote remove origin   # then: git remote add origin <your-repo-url>'
+        );
+      }
+    } else if (origin) {
+      done.push(`Kept your "origin" remote (${origin}) — it doesn't point at the template`);
     }
   } else {
     run(['init']);
