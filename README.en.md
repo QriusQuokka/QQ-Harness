@@ -101,20 +101,22 @@ You need **[Claude Code](https://claude.com/claude-code)** installed. It already
    Download ZIP* button on GitHub) and unzip it into your new project folder. If you prefer the
    command line:
    ```
-   git clone https://github.com/<owner>/<repo>.git my-project
-   cd my-project
+   git clone https://github.com/QriusQuokka/QQ-Harness.git [project-name]
+   cd [project-name]
    ```
-   (Replace the address with this repository's actual address.)
 
-2. **Make it your own project (one command).** Run:
-   ```
-   node scripts/init-template.mjs
-   ```
-   This cleans out the built-in example, starts fresh version control (a first save point), and
-   prints a short to-do list (filling your name into `LICENSE`, etc.). *Skip this step if you
-   only want to explore the harness with its example in place.*
+2. **Open the project folder with Claude Code.** If you cloned, open the `[project-name]`
+   folder; if you used the ZIP, open the unzipped folder.
 
-3. **Open the project with Claude Code** in that folder.
+3. **Let Claude handle the initial setup.** Once Claude Code is open, type:
+
+   > "Set up this project for me"
+
+   Claude will run `node scripts/init-template.mjs`, which cleans out the built-in example,
+   starts fresh version control (a first save point), and prints a short to-do list (filling
+   your name into `LICENSE`, etc.).
+   To run it yourself instead: `node scripts/init-template.mjs`
+   *Skip this step if you only want to explore the harness with its example in place.*
 
 4. **Restart Claude Code once.** The safety hooks and permission rules are read when a session
    starts, so a fresh start makes sure they're active.
@@ -126,7 +128,7 @@ You need **[Claude Code](https://claude.com/claude-code)** installed. It already
 > above or GitHub's **“Use this template”** button — both give you a clean copy with no template
 > history. A **`git clone`**, by contrast, brings the template's full commit history *and* an
 > `origin` remote still pointing at the template repo (an accidental push would go there). If you
-> started with a clone, remove or repoint `origin` to make the project yours — step 2's
+> started with a clone, remove or repoint `origin` to make the project yours — step 3's
 > `init-template` detects this and reminds you. Prefer to build *on top of* this harness and send
 > improvements back? **Fork** it instead.
 
@@ -139,6 +141,70 @@ actions are blocked and that ordinary commands are *not* over-blocked:
 ```
 node scripts/test-hooks.mjs
 ```
+
+---
+
+## Starting the conversation — based on how much you have ready
+
+After installation, "now what do I say?" is the natural first question. Bring whatever you
+have — the more prepared you are, the faster you reach actual coding; with less, Claude fills
+in the gaps alongside you.
+
+**You have just a one-line idea**
+
+> "I want to build a task management app."
+
+Say exactly that. Claude will ask questions — "who is this for?", "what are the must-have
+features?" — and work through the requirements with you. By the end of the conversation, what
+you're building and how you'll know it's done will be written down.
+
+**You have some features or a general direction in mind**
+
+> "I'd like login, team-based task management, and it should work on mobile too."
+
+Just say it out loud. Claude will sort through the features, ask about priorities and any
+missing decisions (tech choices, scope), and build a development plan from there.
+
+**You have a detailed planning document**
+
+> "I'd like to start development based on this spec." (paste or attach the document)
+
+Hand it over and Claude will read it, confirm any missing technical decisions, then move
+straight into planning.
+
+---
+
+If you're not sure how to start, just ask **"where do I begin?"** Claude will ask for
+whatever it needs.
+
+---
+
+## Commands — triggering a stage directly
+
+You can just talk normally — that works for everything. Commands are slash-prefixed words
+(e.g. `/plan`) that tell Claude to start a specific stage explicitly.
+
+**Commands you'll use most**
+
+| Command | What it does | When to use it |
+|---------|--------------|----------------|
+| `/spec` | Turns an idea or brief into a formal spec | Before development starts, to nail down requirements |
+| `/plan` | Turns a spec into a concrete development plan | When you want to see the plan before any code is written |
+| `/verify` | Checks that what was built actually works | When you want proof, not just the AI's word for it |
+| `/review` | Inspects changes from a reviewer's perspective | Before wrapping up, for a final check |
+| `/run` | Runs the app so you can see it | When you want to watch it work in real life |
+
+**The full 9-stage flow**
+
+Every stage has its own command. Use them when you want to walk through the process
+step by step explicitly:
+
+```
+/spec → /plan → /develop → /lint → /observe → /verify → /review → /ship → /gc
+```
+
+> You can also just say "sort out the spec" or "check this works" — Claude will run the right
+> stage for you. Commands are the option when you want to be more explicit.
 
 ---
 
