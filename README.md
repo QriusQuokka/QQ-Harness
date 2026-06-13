@@ -96,11 +96,11 @@ Node.js로 작성되어 Windows·macOS·Linux에서 동일하게 작동합니다
 1. **파일을 프로젝트로 내려받기.** 이 저장소를 ZIP으로 받아(GitHub의 초록색 *Code → Download ZIP*
    버튼) 새 프로젝트 폴더에 풉니다. 명령줄을 선호한다면:
    ```
-   git clone https://github.com/QriusQuokka/QQ-Harness.git [프로젝트명]
-   cd [프로젝트명]
+   git clone https://github.com/QriusQuokka/QQ-Harness.git [프로젝트 폴더 경로]
+   cd [프로젝트 폴더 경로]
    ```
 
-2. **프로젝트 폴더를 Claude Code로 열기.** 클론했다면 `[프로젝트명]` 폴더를, ZIP으로 받았다면
+2. **프로젝트 폴더를 Claude Code로 열기.** 클론했다면 `[프로젝트 폴더 경로]` 폴더를, ZIP으로 받았다면
    압축 해제한 폴더를 Claude Code로 엽니다.
 
 3. **Claude에게 초기 세팅을 맡기기.** Claude Code가 열리면 다음과 같이 입력하세요:

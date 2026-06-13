@@ -101,11 +101,11 @@ You need **[Claude Code](https://claude.com/claude-code)** installed. It already
    Download ZIP* button on GitHub) and unzip it into your new project folder. If you prefer the
    command line:
    ```
-   git clone https://github.com/QriusQuokka/QQ-Harness.git [project-name]
-   cd [project-name]
+   git clone https://github.com/QriusQuokka/QQ-Harness.git [project-folder-path]
+   cd [project-folder-path]
    ```
 
-2. **Open the project folder with Claude Code.** If you cloned, open the `[project-name]`
+2. **Open the project folder with Claude Code.** If you cloned, open the `[project-folder-path]`
    folder; if you used the ZIP, open the unzipped folder.
 
 3. **Let Claude handle the initial setup.** Once Claude Code is open, type:
