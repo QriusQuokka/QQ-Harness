@@ -30,3 +30,5 @@ current, cross-linked, and owned. A recurring **doc-gardening** agent
 - `QUALITY_SCORE.md` — per-domain quality grades; tracks gaps over time.
 - `RELIABILITY.md` — reliability/operability expectations.
 - `PLANS.md` — planning conventions (how plans are written and tracked).
+- `PROJECT_MAP.md` — non-developer WBS dashboard (skill: `brief`). Plain-language view of what
+  the project does, how it's split, and what's happening now. Derived from specs/plans/task-state.

@@ -52,6 +52,10 @@ Each stage has a skill in `.claude/skills/` and a runtime artifact in `harness/`
   See `harness/43_reproducibility-worktree.md`.
 - **H. Human escalation** → escalate only when judgment is needed; log it as a *signal*
   (missing-harness intervention) in `harness/42_intervention-log.md`.
+- **I. Stakeholder translation** → `docs/PROJECT_MAP.md` (skill: `brief`). A plain-language,
+  non-developer WBS dashboard derived from spec + exec-plans + task-state: what the project
+  does, how it's split, what's happening now. A *derived view* — sources win on conflict.
+  `plan`/`develop`/`verify` refresh it so it stays current.
 
 ## Map of the repository
 - `docs/` — system of record. Start at `docs/index.md`.

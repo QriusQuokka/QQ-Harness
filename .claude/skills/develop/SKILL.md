@@ -19,4 +19,5 @@ Follow `harness/12_tool-usage-protocol.md`.
 
 ## Done when
 The step is implemented behind the boundaries with a complete tool trace. Verification is
-stage 5, not here.
+stage 5, not here. Mark the current node 🔄 in the stakeholder view (`brief` skill) so
+`docs/PROJECT_MAP.md` shows what's being worked on now.

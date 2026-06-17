@@ -18,4 +18,5 @@ non-trivial → durable exec-plan in `docs/exec-plans/active/`.
 
 ## Done when
 There's a resumable plan whose steps map to the acceptance criteria, and task state has a
-concrete next action.
+concrete next action. Then refresh the stakeholder view (`brief` skill) so
+`docs/PROJECT_MAP.md` reflects the new/changed WBS tree.

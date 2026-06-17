@@ -19,4 +19,5 @@ Completion is an evidentiary object, not an assertion (`harness/33_verification-
 
 ## Done when
 Every requirement maps to passing evidence and a verification report exists. Assign an
-outcome label (`harness/eval/outcome-taxonomy.md`).
+outcome label (`harness/eval/outcome-taxonomy.md`). Then move the node to ✅ in the
+stakeholder view (`brief` skill) so `docs/PROJECT_MAP.md` stays current.
