@@ -24,6 +24,9 @@ without proof, and leave a mess behind. This harness adds the missing structure:
   observe → verify → review → ship → clean up.*
 - 🧾 **Evidence** — "done" means there is proof (a passing check), not just the AI saying so.
 - 🧹 **Tidiness** — the AI is nudged to clean up after itself instead of accumulating clutter.
+- 🗺️ **Progress at a glance** — how the work is split and what's happening right now is kept in a
+  plain-language **WBS map (`docs/PROJECT_MAP.md`)** you can read without knowing how to code —
+  made for planners and PMs.
 
 Think of it like a **harness on a rock climber**: the climber (the AI) still does the
 climbing, but the harness catches dangerous falls and keeps everyone following the safe route.
@@ -89,6 +92,24 @@ Cutting across all stages are concerns like **security, evidence-keeping, verifi
 diagnosing-before-fixing, and reproducibility**. The full reasoning lives in `docs/` (start at
 [`docs/index.md`](docs/index.md)) and the runtime machinery in `harness/` (start at
 [`harness/README.md`](harness/README.md)).
+
+---
+
+## A one-page map for non-developers (PROJECT_MAP)
+
+The spec and plan documents this harness produces are thorough, but written in developer
+language. So that a non-developer can grasp the project without reading them directly, the
+harness keeps a separate **plain-language WBS dashboard**,
+[`docs/PROJECT_MAP.md`](docs/PROJECT_MAP.md).
+
+- **What you see** — a one-line overview, a 👉 Now section, a 🗂️ work-breakdown tree (✅ done /
+  🔄 in progress / ⏳ planned / ⛔ blocked), a glossary, and links down to the source documents.
+- **Always current** — it refreshes automatically as the plan, develop, and verify stages
+  progress. Open this one file anytime and you see "you are here."
+- **Sources stay untouched** — the map is a **derived view** (a translation/summary) of the
+  spec and plans. The originals are never altered, and on any conflict the originals win.
+- **Create / refresh** — type `/brief` and it reads the current documents to fill in or update
+  the map.
 
 ---
 
@@ -191,6 +212,7 @@ You can just talk normally — that works for everything. Commands are slash-pre
 
 | Command | What it does | When to use it |
 |---------|--------------|----------------|
+| `/brief` | Builds/refreshes the non-developer WBS map | When you want the whole structure and current position at a glance |
 | `/spec` | Turns an idea or brief into a formal spec | Before development starts, to nail down requirements |
 | `/plan` | Turns a spec into a concrete development plan | When you want to see the plan before any code is written |
 | `/verify` | Checks that what was built actually works | When you want proof, not just the AI's word for it |
